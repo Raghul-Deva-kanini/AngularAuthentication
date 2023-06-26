@@ -1,0 +1,181 @@
+<!-- <div>
+    <table>
+        <tr>
+            <td><label class="form-control">Full Name</label></td>
+            <td><input class="form-control" 
+                required minlength="5" 
+                type="text" 
+                [(ngModel)]="intern.name" 
+                #iname="ngModel"></td>
+            <span *ngIf="iname.touched && iname.invalid" class="alert alert-danger">
+               <span *ngIf="iname.errors['required']"> Name cannot be empty</span>
+               <span  *ngIf="iname.errors['minlength']">Name should be min 5 chars long</span> 
+            </span>
+        </tr>
+        <tr>
+            <td><label class="form-control">Phone</label></td>
+            <td><input class="form-control" type="text" [(ngModel)]="intern.phone"></td>
+        </tr>
+        <tr>
+            <td><label class="form-control">Email</label></td>
+            <td><input class="form-control" type="text" [(ngModel)]="intern.email"></td>
+        </tr>
+        <tr>
+            <td><label class="form-control">Gender</label></td>
+            <td>
+                <select class="form-control" (change)="addGender(gender.value)" #gender>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label class="form-control">Date Of Birth</label></td>
+            <td><input class="form-control" type="date" [(ngModel)]="intern.dateOfBirth"></td>
+        </tr>
+        <tr>
+            <td><label class="form-control">Age</label></td>
+            <td><input class="form-control" type="number" [(ngModel)]="intern.age"></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-success" (click)="addIntern()">Register</button></td>
+            <td><button class="btn btn-danger">Cancel</button></td>
+        </tr>
+    </table>
+</div>
+<div>
+    {{intern| json}}
+</div> -->
+
+
+<section class="vh-150" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-4 col-lg-5 d-none d-md-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+
+                <div class="d-flex align-items-center mb-3 pb-1">
+                  <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                  <span class="h1 fw-bold mb-0">Logo</span>
+                </div>
+
+                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+
+                <form #register_form="ngForm">
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" required pattern="[a-zA-Z0-9]*"
+                      placeholder="Username" id="id" name="id" #id="ngModel" [(ngModel)]="register.id" />
+                    <div *ngIf="(id?.dirty || id?.touched)" class="text-danger">
+                      <div *ngIf="!id?.valid">
+                        <div *ngIf="id.errors?.['required']">
+                          User name is required
+                        </div>
+                        <div *ngIf="id.value && id.errors && !id.errors?.['required']">
+                          Please enter a valid input [Username should not contain special charaters]
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-outline mb-4">
+                    <input type="email" class="form-control form-control-lg" placeholder="Email" name="email"
+                      [(ngModel)]="register.email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                      #email="ngModel" />
+                    <div *ngIf="email.invalid && email.touched" class="text-danger">
+                      <div *ngIf="email.errors?.['required']">Email is required.</div>
+                      <div *ngIf="email.errors?.['pattern']">Please enter a valid email address.</div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="First Name"
+                      [(ngModel)]="register.firstName" name="firstName" required pattern="[a-zA-Z]+"
+                      #firstName="ngModel" />
+                    <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+                      <div *ngIf="firstName.errors?.['required']">First Name is required.</div>
+                      <div *ngIf="firstName.errors?.['pattern']">Please enter a valid First Name (only alphabets are
+                        allowed).</div>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="Last Name"
+                      [(ngModel)]="register.lastName" name="lastName" required pattern="[a-zA-Z]+"
+                      #lastName="ngModel" />
+                    <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+                      <div *ngIf="lastName.errors?.['required']">Last Name is required.</div>
+                      <div *ngIf="lastName.errors?.['pattern']">Please enter a valid Last Name (only alphabets are
+                        allowed).</div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-outline mb-4">
+                    <select class="form-control form-control-lg" [(ngModel)]="register.gender" name="gender" required
+                      #gender="ngModel">
+                      <option value="" disabled selected hidden>Select Gender</option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                    </select>
+                    <div *ngIf="gender.invalid && gender.touched" class="text-danger">
+                      <div *ngIf="gender.errors?.['required']">Gender is required.</div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-outline mb-4">
+                    <select class="form-control form-control-lg" [(ngModel)]="register.role" name="role" required
+                      #role="ngModel">
+                      <option value="" disabled selected hidden>Select Role</option>
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
+                    <div *ngIf="role.invalid && role.touched" class="text-danger">
+                      <div *ngIf="role.errors?.['required']">Role is required.</div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-outline mb-4">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password"
+                      [(ngModel)]="register.passwordClear" name="password" required
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" #password="ngModel" />
+                    <div *ngIf="password.invalid && password.touched" class="text-danger">
+                      <div *ngIf="password.errors?.['required']">Password is required.</div>
+                      <div *ngIf="password.errors?.['pattern']">
+                        Password should contain a minimum of 8 characters with at least 1 uppercase, 1 lowercase, 1
+                        digit, and 1 special character.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-3 mb-9">
+                    <button class="btn btn-dark btn-lg btn-block" type="button" (click)="onPost()">Register</button>
+                    <div *ngIf="showError" class="text-danger">Please fill all the fields.</div>
+                  </div>
+
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Already have an account?
+                    <a (click)="login_here()" style="color: #393f81;cursor: pointer;">Login here </a>
+                  </p>
+
+                  <span *ngIf="registration_status">Registration successful</span>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
